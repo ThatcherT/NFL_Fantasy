@@ -5,7 +5,9 @@ import pickle
 # import sys
 # sys.setrecursionlimit(2500)
 years = [2015, 2016, 2017, 2018, 2019, 2020]
+first_year = years[0]
 groups = ['O', 'D']
+first_group = groups[0]
 # years = [2015]
 # groups = ['O']
 i = 0
@@ -42,9 +44,23 @@ for year in years:
                 outer_list.append(inner_list)
                 inner_list = []
             iter += 1
+        YEAR = [year for i in outer_list]
+        if group == 'O':
+            side = 'Offense'
+        else:
+            side = 'Defense'
+        GROUP = [side for i in outer_list]
+        if year == first_year and group == first_group:
 
-        df = pd.DataFrame(outer_list, columns = headers)
-        print(df)
+            df = pd.DataFrame(outer_list, columns = headers)
+            df['Year'] = YEAR
+            df['Side'] = GROUP
+        else:
+            df2 = pd.DataFrame(outer_list, columns = headers)
+            df2['Year'] = YEAR
+            df2['Side'] = GROUP
+            df = df.append(df2)
+
         # print(row_list[0].text)
         # with open(f'{year}_{group}', 'wb') as handle:
         #     pickle.dump(table,handle)
@@ -56,4 +72,5 @@ for year in years:
         # Html_file.close()
         i+=1
 
-
+print(df)
+df.to_pickle('./Historical.pkl')

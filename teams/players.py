@@ -2,7 +2,7 @@
 # That way, I can look at averaged previous season stats
 
 from league.league import league
-weeks = [1,2]
+weeks = [1,2,3]
 matchups_dict = {}
 box_dict = {}
 
@@ -38,3 +38,37 @@ for week in weeks:
     active_week.update({week: active_players})
     free_week.update({week: free_agents})
         # print(box.away_lineup[-2].slot_position)
+
+
+team_dict = {'ARI':	'Arizona Cardinals',
+'ATL'	:'Atlanta Falcons',
+'BAL':	'Baltimore Ravens',
+'BUF'	:'Buffalo Bills',
+'CAR':	'Carolina Panthers',
+'CHI':	'Chicago Bears',
+'CIN':	'Cincinnati Bengals',
+'CLE':	'Cleveland Browns',
+'DAL'	:'Dallas Cowboys',
+'DEN'	:'Denver Broncos',
+'DET':	'Detroit Lions',
+'GB'	:'Green Bay Packers',
+'HOU'	:'Houston Texans',
+'IND'	:'Indianapolis Colts',
+'JAX':	'Jacksonville Jaguars',
+'KC':	'Kansas City Chiefs',
+'LAC'	:'Los Angeles Chargers',
+'LAR'	:'Los Angeles Rams',
+'LV'	:'Las Vegas Raiders',
+'MIA':	'Miami Dolphins',
+'MIN':	'Minnesota Vikings',
+'NE':	'New England Patriots',
+'NO':	'New Orleans Saints',
+'NYG':	'New York Giants',
+'NYJ':	'New York Jets',
+'PHI':	'Philadelphia Eagles',
+'PIT':	'Pittsburgh Steelers',
+'SEA':	'Seattle Seahawks',
+'SF'	:'San Francisco 49ers',
+'TB':	'Tampa Bay Buccaneers',
+'TEN':	'Tennessee Titans',
+'WAS':'Washington Football Team'}
