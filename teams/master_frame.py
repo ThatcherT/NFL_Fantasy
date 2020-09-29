@@ -49,17 +49,20 @@ for week in weeks:
                            columns=columns)
 
         df = df.append(df2)
-df = df[df['Team'] != 'None']  # filter to remove free agents in league
+df = df[df['Team'] != 'None']
+df = df[df['Opponent'] != 'None']
+# filter to remove free agents in league
 
 # Create color system so you can call on this column when plotting with Bokeh (if want to see FA)
 df['Agent Color'] = np.where(df['Slot'] != 'FA', 'Red', 'Green')
 df['Agent Color'] = np.where(df['Slot'] == 'BE', 'Blue', df['Agent Color'])
 
+
 # Update Names to Current
 df['Team'] = np.where(df['Team'] == 'OAK', 'LV', df['Team'])
 df['Team'] = np.where(df['Team'] == 'WSH', 'WAS', df['Team'])
-df['Opponent'] = np.where(df['Opponent'] == 'OAK', 'LV', df['Team'])
-df['Opponent'] = np.where(df['Opponent'] == 'WSH', 'WAS', df['Team'])
+df['Opponent'] = np.where(df['Opponent'] == 'OAK', 'LV', df['Opponent'])
+df['Opponent'] = np.where(df['Opponent'] == 'WSH', 'WAS', df['Opponent'])
 
 # print(df['Team'])
 df_hist = pd.read_pickle('../Scrape/Historical.pkl')
@@ -74,4 +77,5 @@ histd_2019 = hist_2019[hist_2019['Side'] == 'Defense']
 histo_2019 = hist_2019[hist_2019['Side'] == 'Offense']
 df = pd.merge(df, histo_2019, left_on = 'Team Join', right_on = 'Team')
 df = pd.merge(df, histd_2019, left_on = 'Opp Join', right_on = 'Team')
+print(df.iloc[0,:])
 df.to_pickle('./master.pkl')
