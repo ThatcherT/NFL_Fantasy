@@ -15,7 +15,7 @@ df['yardage_differential'] = df['RYds/G_x'].astype(float) - df['RYds/G_y'].astyp
 df['projected_differential'] = df['Points'] - df['Projected']
 filter_df = df
 
-# filter_df = df[df['Slot'] == 'QB']
+filter_df = df[df['Team_x'] == 'BAL']
 
 # filter_df = filter_df[filter_df['Side'] == 'Defense']
 
@@ -26,7 +26,7 @@ standard = lambda column : [(item-column.min())/(column.max() -  column.min()) f
 # print(filter_df.columns)
 source = ColumnDataSource(filter_df)
 g = figure(plot_height=600, plot_width=700, title="Fantasy Football Player Database")
-g.circle(y='Points', x='Projected', color = 'Agent Color', source=source, size=8, line_color='black')
+g.circle(y='Points', x='Opponent_Rank', color = 'Agent Color', source=source, size=8, line_color='black')
 g.xgrid.grid_line_alpha = 1
 g.xgrid.grid_line_color = 'black'
 g.ygrid.grid_line_color = 'black'
